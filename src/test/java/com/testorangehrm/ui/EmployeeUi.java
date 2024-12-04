@@ -15,4 +15,8 @@ public class EmployeeUi {
 	public By input_search_employee_name = By.xpath("//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/form[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]");
 	public By btn_search_employee = By.xpath("//button[normalize-space()='Search']");
 	public By table_search_result = By.xpath("/html/body/div[1]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[3]/div");
+	//edit
+	public By btn_edit_employee = By.xpath("//div[@class='orangehrm-container']//button[1]");
+	public By input_edit_firstName_employee = By.xpath("//input[@placeholder='First Name']");
+	public By btn_save_edited_employee = By.xpath("//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//button[@type='submit'][normalize-space()='Save']");
 }

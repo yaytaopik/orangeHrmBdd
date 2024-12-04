@@ -38,6 +38,31 @@ public class CommonUtilities {
 		driver.findElement(locator).sendKeys(input);
 	}
 	
+	public String generateRandomNumber() {
+		Random rand = new Random();
+
+		// Generate random integers in range 0 to 999
+		int random_integer = rand.nextInt(10000);
+		System.out.println("Random Integers: "+random_integer);
+		
+		return String.valueOf(random_integer);
+	}
+	
+	//clearfield
+	public void clearField(By locator) {
+		WebElement txt = driver.findElement(locator);
+		txt.clear();
+	}
+	
+	public void clearValue(By locator) throws InterruptedException {
+		WebElement val = driver.findElement(locator);
+		val.sendKeys(Keys.COMMAND + "a");
+		threadSleepMedium();
+		val.sendKeys(Keys.DELETE);
+	}
+	
+	//assert
+	
 	public void isDisplayed(By locator) {
 		driver.findElement(locator).isDisplayed();
 	}
