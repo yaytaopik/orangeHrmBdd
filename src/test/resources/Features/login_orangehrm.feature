@@ -1,7 +1,7 @@
-@orangehrm
+@orangehrm @login
 
-Feature: Login orange hrm
-	@login
+Feature: 1. Login orange hrm
+
 	Scenario: 1.1 Admin login into orange hrm with valid credentials
 		Given Admin login using username "Admin" and password "admin123"
 		And Admin successfully login

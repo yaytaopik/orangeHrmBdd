@@ -8,19 +8,40 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.BeforeTest;
+
 import com.aventstack.extentreports.*;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+
+
 import io.cucumber.java.BeforeAll;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverManager {
-	WebDriver driver;
-	ExtentSparkReporter extentSparkReporter;
-	ExtentReports extentReports;
-	ExtentTest extentTest;
 	
-	public void setupDriver() {
+	  ExtentSparkReporter extentSparkReporter;
+	  ExtentReports extentReports;
+	  ExtentTest extentTest;
+	
+	WebDriver driver;
+	
+	@BeforeTest
+	public void startReporting() {
+		  extentSparkReporter  = new ExtentSparkReporter(System.getProperty("user.dir") + "/test-output/extentReport.html");
+	      extentReports = new ExtentReports();
+	      extentReports.attachReporter(extentSparkReporter);
+
+
+	      //configuration items to change the look and feel
+	      //add content, manage tests etc
+	      extentSparkReporter.config().setDocumentTitle("Simple Automation Report");
+	      extentSparkReporter.config().setReportName("Test Report");
+	      extentSparkReporter.config().setTheme(Theme.STANDARD);
+	      extentSparkReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
+	}
+	
+	public void setupDriver() {	  
 		ChromeOptions options=new ChromeOptions();
 //		options.addArguments("--headless=new");
 //		options.addArguments("--start-maximized");
@@ -35,18 +56,8 @@ public class DriverManager {
 //		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
 		driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
 		
-		//setup extent report
-		//create the htmlReporter object 
-		  
-		
 		//Navigate to orangehrm demo
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-		
-		//create the htmlReporter object 
-		  ExtentSparkReporter htmlReporter = new ExtentSparkReporter("extentReport.html");
-		//create ExtentReports and attach reporter(s)
-		  ExtentReports extent = new ExtentReports();
-		  extent.attachReporter(htmlReporter);
 		
 	}
 	
